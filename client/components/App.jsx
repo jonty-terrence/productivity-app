@@ -1,11 +1,15 @@
 import React from 'react'
 
+import Header from './Header'
+import Weather from './Weather'
+
 class App extends React.Component {
   render () {
     return (
-      <div>
-        <h1>Hi there, this is a React boilerplate project</h1>
-      </div>
+      <>
+        <Header/>
+        <Weather />
+      </>
     )
   }
 }

@@ -1,7 +1,7 @@
 {
-  "name": "react-project-boilerplate",
+  "name": "productivity-app",
   "version": "1.0.0",
-  "description": "A simple boilerplate for react projects",
+  "description": "A simple application to list daily tasks, check them off and visualise weekly productivity",
   "main": "index.js",
   "author": "Jonty Buchan",
   "license": "MIT",
@@ -14,13 +14,7 @@
     "test:watch": "npm test -- --watchAll",
     "dev": "run-p dev:server dev:client",
     "dev:server": "nodemon server",
-    "dev:client": "webpack --config webpack.config.js --watch",
-    "knex": "knex --knexfile server/db/knexfile.js",
-    "db:reset": "run-s db:delete db:migrate db:seed",
-    "db:migrate": "npm run knex migrate:latest",
-    "db:seed": "npm run knex seed:run",
-    "db:delete": "rm -f server/db/dev.sqlite3",
-    "postinstall": "run-s db:migrate db:seed build"
+    "dev:client": "webpack --config webpack.config.js --watch"
   },
   "engines": {
     "node": "12.x"
@@ -47,8 +41,7 @@
     ]
   },
   "dependencies": {
-    "express": "^4.17.1",
-    "knex": "^0.21.5"
+    "express": "^4.17.1"
   },
   "devDependencies": {
     "@babel/core": "^7.11.1",
