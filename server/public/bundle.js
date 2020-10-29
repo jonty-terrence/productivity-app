@@ -210,7 +210,7 @@ function _isNativeReflectConstruct() { if (typeof Reflect === "undefined" || !Re
 
 
 
-var holidaysListUrl = 'http://localhost:3000/api/v2/publicholidays/';
+var weatherUrl = 'http://localhost:3000/api/v2/weather/';
 
 var Weather = /*#__PURE__*/function (_React$Component) {
   _babel_runtime_helpers_inherits__WEBPACK_IMPORTED_MODULE_3___default()(Weather, _React$Component);
@@ -240,19 +240,20 @@ var Weather = /*#__PURE__*/function (_React$Component) {
     value: function componentDidMount() {
       var _this2 = this;
 
-      console.log('component mounted');
-      superagent__WEBPACK_IMPORTED_MODULE_8___default.a.get(holidaysListUrl).then(function (res) {
+      superagent__WEBPACK_IMPORTED_MODULE_8___default.a.get(weatherUrl).then(function (res) {
         console.log('client-side(in console): ', res.body);
 
         _this2.setState({
-          weather: res.body
+          weather: res.body.weather
         });
+
+        console.log(_this2.state);
       });
     }
   }, {
     key: "render",
     value: function render() {
-      return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_7___default.a.createElement(react__WEBPACK_IMPORTED_MODULE_7___default.a.Fragment, null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_7___default.a.createElement("h1", null, "The Weather today is"));
+      return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_7___default.a.createElement(react__WEBPACK_IMPORTED_MODULE_7___default.a.Fragment, null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_7___default.a.createElement("h1", null, "The Weather today is ", this.state.weather[0].main));
     }
   }]);
 

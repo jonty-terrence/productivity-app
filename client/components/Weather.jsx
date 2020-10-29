@@ -2,7 +2,7 @@ import React from 'react'
 
 import request from 'superagent'
 
-const holidaysListUrl = 'http://localhost:3000/api/v2/publicholidays/'
+const weatherUrl = 'http://localhost:3000/api/v2/weather/'
 
 class Weather extends React.Component {
     state = {
@@ -10,18 +10,18 @@ class Weather extends React.Component {
     }
 
     componentDidMount () {
-      console.log('component mounted')
-      request.get(holidaysListUrl)
+      request.get(weatherUrl)
         .then(res => {
           console.log('client-side(in console): ', res.body)
-          this.setState({ weather: res.body })
+          this.setState({ weather: res.body.weather })
+          console.log(this.state)
         })
     }
 
     render () {
       return (
         <>
-          <h1>The Weather today is</h1>
+          <h1>The Weather today is {this.state.weather[0].main}</h1>
         </>
       )
     }
