@@ -29,7 +29,7 @@ class TaskInput extends React.Component {
 
 const mapStateToProps = state => {
   return {
-    task: state.task
+    tasks: state.task
   }
 }
 

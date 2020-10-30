@@ -6,7 +6,7 @@ let taskCount = 0
 class TaskDisplay extends React.Component {
   render () {
     return (
-      this.props.task.map(task => {
+      this.props.tasks.map(task => {
         return (
           <p key={taskCount++}>{task}</p>
         )
@@ -17,7 +17,7 @@ class TaskDisplay extends React.Component {
 
 const mapStateToProps = state => {
   return {
-    task: state.tasks
+    tasks: state.tasks
   }
 }
 
