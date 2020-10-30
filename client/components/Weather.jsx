@@ -12,9 +12,7 @@ class Weather extends React.Component {
     componentDidMount () {
       request.get(weatherUrl)
         .then(res => {
-          console.log('client-side(in console): ', res.body)
           this.setState({ weather: res.body.weather })
-          console.log(this.state)
         })
     }
 
