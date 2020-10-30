@@ -9,7 +9,6 @@ const weatherUrl = `api.openweathermap.org/data/2.5/weather?q=Auckland&appid=${p
 router.get('/', (req, res) => {
   request.get(weatherUrl)
     .then(response => {
-      console.log('server-side(in-terminal): ', response.body)
       res.json(response.body)
     })
     .catch(err => {
