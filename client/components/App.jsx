@@ -2,6 +2,7 @@ import React from 'react'
 
 import Header from './Header'
 import Weather from './Weather'
+import TaskInput from './TaskInput'
 
 class App extends React.Component {
   render () {
@@ -9,6 +10,7 @@ class App extends React.Component {
       <>
         <Header/>
         <Weather />
+        <TaskInput />
       </>
     )
   }
