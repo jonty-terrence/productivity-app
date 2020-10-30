@@ -228,7 +228,7 @@ function _isNativeReflectConstruct() { if (typeof Reflect === "undefined" || !Re
 
 
 
-var count = 0;
+var taskCount = 0;
 
 var TaskDisplay = /*#__PURE__*/function (_React$Component) {
   _babel_runtime_helpers_inherits__WEBPACK_IMPORTED_MODULE_2___default()(TaskDisplay, _React$Component);
@@ -246,7 +246,7 @@ var TaskDisplay = /*#__PURE__*/function (_React$Component) {
     value: function render() {
       return this.props.task.map(function (task) {
         return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_5___default.a.createElement("p", {
-          key: count++
+          key: taskCount++
         }, task);
       });
     }
@@ -306,6 +306,7 @@ function handleChange(dispatch) {
   var taskInput = document.getElementById('task').value;
   console.log(taskInput);
   dispatch(Object(_actions__WEBPACK_IMPORTED_MODULE_7__["collectTask"])(taskInput));
+  document.getElementById('task').value = '';
 }
 
 var TaskInput = /*#__PURE__*/function (_React$Component) {
