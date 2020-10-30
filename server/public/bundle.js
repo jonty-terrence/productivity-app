@@ -228,6 +228,7 @@ function _isNativeReflectConstruct() { if (typeof Reflect === "undefined" || !Re
 
 
 
+var count = 0;
 
 var TaskDisplay = /*#__PURE__*/function (_React$Component) {
   _babel_runtime_helpers_inherits__WEBPACK_IMPORTED_MODULE_2___default()(TaskDisplay, _React$Component);
@@ -243,7 +244,11 @@ var TaskDisplay = /*#__PURE__*/function (_React$Component) {
   _babel_runtime_helpers_createClass__WEBPACK_IMPORTED_MODULE_1___default()(TaskDisplay, [{
     key: "render",
     value: function render() {
-      return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_5___default.a.createElement("p", null, this.props.task);
+      return this.props.task.map(function (task) {
+        return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_5___default.a.createElement("p", {
+          key: count++
+        }, task);
+      });
     }
   }]);
 
@@ -297,8 +302,10 @@ function _isNativeReflectConstruct() { if (typeof Reflect === "undefined" || !Re
 
 
 
-function handleChange(e, dispatch) {
-  dispatch(Object(_actions__WEBPACK_IMPORTED_MODULE_7__["collectTask"])(e.target.value));
+function handleChange(dispatch) {
+  var taskInput = document.getElementById('task').value;
+  console.log(taskInput);
+  dispatch(Object(_actions__WEBPACK_IMPORTED_MODULE_7__["collectTask"])(taskInput));
 }
 
 var TaskInput = /*#__PURE__*/function (_React$Component) {
@@ -319,13 +326,14 @@ var TaskInput = /*#__PURE__*/function (_React$Component) {
 
       return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_5___default.a.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_5___default.a.createElement("input", {
         type: "text",
-        id: "title",
-        className: "title-input",
-        placeholder: "Add a new task to your to-do list",
-        onChange: function onChange(e) {
-          return handleChange(e, _this.props.dispatch);
+        id: "task",
+        className: "field",
+        placeholder: "Add a new task to your to-do list"
+      }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_5___default.a.createElement("button", {
+        onClick: function onClick(e) {
+          return handleChange(_this.props.dispatch);
         }
-      }));
+      }, "Submit"));
     }
   }]);
 

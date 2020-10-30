@@ -3,8 +3,10 @@ import { connect } from 'react-redux'
 
 import { collectTask } from '../actions'
 
-function handleChange (e, dispatch) {
-  dispatch(collectTask(e.target.value))
+function handleChange (dispatch) {
+  let taskInput = document.getElementById('task').value
+  console.log(taskInput)
+  dispatch(collectTask(taskInput))
 }
 
 class TaskInput extends React.Component {
@@ -13,12 +15,12 @@ class TaskInput extends React.Component {
       <div>
         <input
           type="text"
-          id="title"
-          className="title-input"
+          id="task"
+          className="field"
           placeholder="Add a new task to your to-do list"
-          onChange={e => handleChange(e, this.props.dispatch)}
         >
         </input>
+        <button onClick={e => handleChange(this.props.dispatch)}>Submit</button>
       </div>
     )
   }
