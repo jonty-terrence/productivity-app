@@ -1,7 +1,7 @@
 import React from 'react'
 import { connect } from 'react-redux'
 
-import collectTask from '../actions'
+import { collectTask } from '../actions'
 
 function handleChange (e, dispatch) {
   dispatch(collectTask(e.target.value))
@@ -26,7 +26,7 @@ class TaskInput extends React.Component {
 
 const mapStateToProps = state => {
   return {
-    title: state.title
+    task: state.task
   }
 }
 

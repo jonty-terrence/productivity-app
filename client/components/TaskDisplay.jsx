@@ -1,9 +1,18 @@
 import React from 'react'
+import { connect } from 'react-redux'
 
-const Header = () => (
-  <div>
-      This is the header
-  </div>
-)
+class TaskDisplay extends React.Component {
+  render () {
+    return (
+      <p>{this.props.task}</p>
+    )
+  }
+}
 
-export default Header
+const mapStateToProps = state => {
+  return {
+    task: state.tasks
+  }
+}
+
+export default connect(mapStateToProps)(TaskDisplay)
