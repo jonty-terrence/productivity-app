@@ -230,6 +230,10 @@ function _isNativeReflectConstruct() { if (typeof Reflect === "undefined" || !Re
 
 var taskCount = 0;
 
+function handleClick(task) {
+  console.log(task);
+}
+
 var TaskDisplay = /*#__PURE__*/function (_React$Component) {
   _babel_runtime_helpers_inherits__WEBPACK_IMPORTED_MODULE_2___default()(TaskDisplay, _React$Component);
 
@@ -244,10 +248,14 @@ var TaskDisplay = /*#__PURE__*/function (_React$Component) {
   _babel_runtime_helpers_createClass__WEBPACK_IMPORTED_MODULE_1___default()(TaskDisplay, [{
     key: "render",
     value: function render() {
-      return this.props.task.map(function (task) {
-        return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_5___default.a.createElement("p", {
+      return this.props.tasks.map(function (task) {
+        return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_5___default.a.createElement(react__WEBPACK_IMPORTED_MODULE_5___default.a.Fragment, null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_5___default.a.createElement("button", {
+          onClick: function onClick() {
+            return handleClick(task);
+          }
+        }, "Complete"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_5___default.a.createElement("p", {
           key: taskCount++
-        }, task);
+        }, task));
       });
     }
   }]);
@@ -257,7 +265,7 @@ var TaskDisplay = /*#__PURE__*/function (_React$Component) {
 
 var mapStateToProps = function mapStateToProps(state) {
   return {
-    task: state.tasks
+    tasks: state.tasks
   };
 };
 
@@ -343,7 +351,7 @@ var TaskInput = /*#__PURE__*/function (_React$Component) {
 
 var mapStateToProps = function mapStateToProps(state) {
   return {
-    task: state.task
+    tasks: state.task
   };
 };
 

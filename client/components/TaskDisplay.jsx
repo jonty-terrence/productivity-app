@@ -3,12 +3,19 @@ import { connect } from 'react-redux'
 
 let taskCount = 0
 
+function handleClick (task) {
+  console.log(task)
+}
+
 class TaskDisplay extends React.Component {
   render () {
     return (
       this.props.tasks.map(task => {
         return (
-          <p key={taskCount++}>{task}</p>
+          <>
+            <button onClick={() => handleClick(task)}>Complete</button>
+            <p key={taskCount++}>{task}</p>
+          </>
         )
       })
     )
