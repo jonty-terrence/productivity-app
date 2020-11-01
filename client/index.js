@@ -3,7 +3,7 @@ import ReactDOM from 'react-dom'
 import { applyMiddleware, compose, createStore } from 'redux'
 import { Provider } from 'react-redux'
 import thunkMiddleware from 'redux-thunk'
-import * as Firebase from 'firebase'
+import firebase from 'firebase'
 
 import App from './components/App'
 import reducers from './reducers'
@@ -18,7 +18,7 @@ const firebaseConfig = {
   appId: '1:565104879869:web:d3a3a248bb9b834c70b694'
 }
 
-const dataStore = Firebase.initializeApp(firebaseConfig)
+const dataStore = firebase.initializeApp(firebaseConfig)
 export const db = dataStore.database()
 
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose
