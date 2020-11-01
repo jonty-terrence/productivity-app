@@ -12,7 +12,7 @@ function handleClick (task, dispatch) {
 
 class TaskDisplay extends React.Component {
   render () {
-      console.log(this.props)
+    console.log(this.props)
     return (
       this.props.tasks.tasks.map(task => {
         return (
