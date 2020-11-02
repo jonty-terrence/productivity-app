@@ -11,12 +11,9 @@ function handleClick (task, dispatch) {
 }
 
 class TaskDisplay extends React.Component {
-    componentDidMount () {
-        this.writeUserData('hello')
-    }
 
     componentDidUpdate () {
-        this.writeUserData('updated')
+        this.writeUserData(this.props.tasks)
         console.log('hi')
     }
   

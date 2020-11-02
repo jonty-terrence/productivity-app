@@ -259,14 +259,9 @@ var TaskDisplay = /*#__PURE__*/function (_React$Component) {
   }
 
   _babel_runtime_helpers_createClass__WEBPACK_IMPORTED_MODULE_1___default()(TaskDisplay, [{
-    key: "componentDidMount",
-    value: function componentDidMount() {
-      this.writeUserData('hello');
-    }
-  }, {
     key: "componentDidUpdate",
     value: function componentDidUpdate() {
-      this.writeUserData('updated');
+      this.writeUserData(this.props.tasks);
       console.log('hi');
     }
   }, {
