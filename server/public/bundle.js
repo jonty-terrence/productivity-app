@@ -268,7 +268,6 @@ var TaskDisplay = /*#__PURE__*/function (_React$Component) {
     key: "writeUserData",
     value: function writeUserData(task) {
       firebase__WEBPACK_IMPORTED_MODULE_7__["default"].database().ref('/').set(task);
-      console.log('Data sent');
     }
   }, {
     key: "retrieveData",

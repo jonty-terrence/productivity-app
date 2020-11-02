@@ -21,11 +21,12 @@ class TaskDisplay extends React.Component {
       firebase.database()
         .ref('/')
         .set(task)
-      console.log('Data sent')
     }
 
     retrieveData () {
-        firebase.database().ref().on("value", function(snapshot) {
+        firebase.database()
+        .ref()
+        .on("value", function(snapshot) {
             console.log(snapshot.val());
             }, function (error) {
        console.log("Error: " + error.code);
