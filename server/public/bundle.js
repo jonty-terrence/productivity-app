@@ -243,9 +243,8 @@ function _isNativeReflectConstruct() { if (typeof Reflect === "undefined" || !Re
 
 var taskCount = 0;
 
-function handleClick(task, dispatch, writeData) {
+function handleClick(task, dispatch) {
   dispatch(Object(_actions__WEBPACK_IMPORTED_MODULE_8__["removeTask"])(task));
-  writeData(task);
 }
 
 var TaskDisplay = /*#__PURE__*/function (_React$Component) {
@@ -265,6 +264,12 @@ var TaskDisplay = /*#__PURE__*/function (_React$Component) {
       this.writeUserData('hello');
     }
   }, {
+    key: "componentDidUpdate",
+    value: function componentDidUpdate() {
+      this.writeUserData('updated');
+      console.log('hi');
+    }
+  }, {
     key: "writeUserData",
     value: function writeUserData(task) {
       firebase__WEBPACK_IMPORTED_MODULE_7__["default"].database().ref('/').set(task);
@@ -278,7 +283,9 @@ var TaskDisplay = /*#__PURE__*/function (_React$Component) {
       return this.props.tasks.tasks.map(function (task) {
         return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_5___default.a.createElement(react__WEBPACK_IMPORTED_MODULE_5___default.a.Fragment, null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_5___default.a.createElement("button", {
           onClick: function onClick() {
-            handleClick(task, _this.props.dispatch, _this.writeUserData);
+            handleClick(task, _this.props.dispatch);
+
+            _this.writeUserData('yes');
           }
         }, "Complete"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_5___default.a.createElement("p", {
           key: taskCount++

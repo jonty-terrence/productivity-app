@@ -6,14 +6,18 @@ import { removeTask } from '../actions'
 
 let taskCount = 0
 
-function handleClick (task, dispatch, writeData) {
+function handleClick (task, dispatch) {
   dispatch(removeTask(task))
-  writeData(task)
 }
 
 class TaskDisplay extends React.Component {
     componentDidMount () {
         this.writeUserData('hello')
+    }
+
+    componentDidUpdate () {
+        this.writeUserData('updated')
+        console.log('hi')
     }
   
     writeUserData (task) {
@@ -28,7 +32,8 @@ class TaskDisplay extends React.Component {
         return (
           <>
             <button onClick={() => {
-              handleClick(task, this.props.dispatch, this.writeUserData)
+              handleClick(task, this.props.dispatch)
+              this.writeUserData('yes')
             }
             }>Complete</button>
             <p key={taskCount++}>{task}</p>
