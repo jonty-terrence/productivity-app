@@ -225,7 +225,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_5___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_5__);
 /* harmony import */ var react_redux__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! react-redux */ "./node_modules/react-redux/es/index.js");
-/* harmony import */ var _index__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ../index */ "./client/index.js");
+/* harmony import */ var firebase__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! firebase */ "./node_modules/firebase/dist/index.esm.js");
 /* harmony import */ var _actions__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ../actions */ "./client/actions/index.js");
 
 
@@ -243,8 +243,9 @@ function _isNativeReflectConstruct() { if (typeof Reflect === "undefined" || !Re
 
 var taskCount = 0;
 
-function handleClick(task, dispatch) {
+function handleClick(task, dispatch, writeData) {
   dispatch(Object(_actions__WEBPACK_IMPORTED_MODULE_8__["removeTask"])(task));
+  writeData(task);
 }
 
 var TaskDisplay = /*#__PURE__*/function (_React$Component) {
@@ -259,9 +260,14 @@ var TaskDisplay = /*#__PURE__*/function (_React$Component) {
   }
 
   _babel_runtime_helpers_createClass__WEBPACK_IMPORTED_MODULE_1___default()(TaskDisplay, [{
+    key: "componentDidMount",
+    value: function componentDidMount() {
+      this.writeUserData('hello');
+    }
+  }, {
     key: "writeUserData",
-    value: function writeUserData() {
-      _index__WEBPACK_IMPORTED_MODULE_7__["db"].database().ref('/').set(this.props);
+    value: function writeUserData(task) {
+      firebase__WEBPACK_IMPORTED_MODULE_7__["default"].database().ref('/').set(task);
       console.log('Data sent');
     }
   }, {
@@ -272,9 +278,7 @@ var TaskDisplay = /*#__PURE__*/function (_React$Component) {
       return this.props.tasks.tasks.map(function (task) {
         return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_5___default.a.createElement(react__WEBPACK_IMPORTED_MODULE_5___default.a.Fragment, null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_5___default.a.createElement("button", {
           onClick: function onClick() {
-            handleClick(task, _this.props.dispatch);
-
-            _this.writeUserData(_this.props);
+            handleClick(task, _this.props.dispatch, _this.writeUserData);
           }
         }, "Complete"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_5___default.a.createElement("p", {
           key: taskCount++
@@ -477,12 +481,11 @@ var Weather = /*#__PURE__*/function (_React$Component) {
 /*!*************************!*\
   !*** ./client/index.js ***!
   \*************************/
-/*! exports provided: db */
+/*! no exports provided */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "db", function() { return db; });
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var react_dom__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-dom */ "./node_modules/react-dom/index.js");
@@ -510,8 +513,7 @@ var firebaseConfig = {
   messagingSenderId: '565104879869',
   appId: '1:565104879869:web:d3a3a248bb9b834c70b694'
 };
-var dataStore = firebase__WEBPACK_IMPORTED_MODULE_5__["default"].initializeApp(firebaseConfig);
-var db = dataStore.database();
+firebase__WEBPACK_IMPORTED_MODULE_5__["default"].initializeApp(firebaseConfig);
 var composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || redux__WEBPACK_IMPORTED_MODULE_2__["compose"];
 var store = Object(redux__WEBPACK_IMPORTED_MODULE_2__["createStore"])(_reducers__WEBPACK_IMPORTED_MODULE_7__["default"], composeEnhancers(Object(redux__WEBPACK_IMPORTED_MODULE_2__["applyMiddleware"])(redux_thunk__WEBPACK_IMPORTED_MODULE_4__["default"])));
 react_dom__WEBPACK_IMPORTED_MODULE_1___default.a.render( /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_redux__WEBPACK_IMPORTED_MODULE_3__["Provider"], {

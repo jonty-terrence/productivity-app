@@ -1,31 +1,34 @@
 import React from 'react'
 import { connect } from 'react-redux'
-import { db } from '../index'
+import firebase from 'firebase'
 
 import { removeTask } from '../actions'
 
 let taskCount = 0
 
-function handleClick (task, dispatch) {
+function handleClick (task, dispatch, writeData) {
   dispatch(removeTask(task))
+  writeData(task)
 }
 
 class TaskDisplay extends React.Component {
-  writeUserData () {
-    db.database()
-      .ref('/')
-      .set(this.props)
-    console.log('Data sent')
-  }
-
+    componentDidMount () {
+        this.writeUserData('hello')
+    }
+  
+    writeUserData (task) {
+      firebase.database()
+        .ref('/')
+        .set(task)
+      console.log('Data sent')
+    }
   render () {
     return (
       this.props.tasks.tasks.map(task => {
         return (
           <>
             <button onClick={() => {
-              handleClick(task, this.props.dispatch)
-              this.writeUserData(this.props)
+              handleClick(task, this.props.dispatch, this.writeUserData)
             }
             }>Complete</button>
             <p key={taskCount++}>{task}</p>

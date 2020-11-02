@@ -6,7 +6,7 @@ import TaskInput from './TaskInput'
 import TaskDisplay from './TaskDisplay'
 
 class App extends React.Component {
-  render () {
+render () {
     return (
       <>
         <Header/>

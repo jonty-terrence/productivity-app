@@ -18,8 +18,7 @@ const firebaseConfig = {
   appId: '1:565104879869:web:d3a3a248bb9b834c70b694'
 }
 
-const dataStore = firebase.initializeApp(firebaseConfig)
-export const db = dataStore.database()
+firebase.initializeApp(firebaseConfig)
 
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose
 const store = createStore(
