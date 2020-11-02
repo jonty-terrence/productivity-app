@@ -262,18 +262,22 @@ var TaskDisplay = /*#__PURE__*/function (_React$Component) {
     key: "componentDidUpdate",
     value: function componentDidUpdate() {
       this.writeUserData(this.props.tasks);
-      var ref = firebase__WEBPACK_IMPORTED_MODULE_7__["default"].database().ref();
-      ref.on("value", function (snapshot) {
-        console.log(snapshot.val());
-      }, function (error) {
-        console.log("Error: " + error.code);
-      });
+      this.retrieveData();
     }
   }, {
     key: "writeUserData",
     value: function writeUserData(task) {
       firebase__WEBPACK_IMPORTED_MODULE_7__["default"].database().ref('/').set(task);
       console.log('Data sent');
+    }
+  }, {
+    key: "retrieveData",
+    value: function retrieveData() {
+      firebase__WEBPACK_IMPORTED_MODULE_7__["default"].database().ref().on("value", function (snapshot) {
+        console.log(snapshot.val());
+      }, function (error) {
+        console.log("Error: " + error.code);
+      });
     }
   }, {
     key: "render",

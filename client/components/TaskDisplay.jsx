@@ -14,12 +14,7 @@ class TaskDisplay extends React.Component {
 
     componentDidUpdate () {
         this.writeUserData(this.props.tasks)
-        let ref = firebase.database().ref();
-        ref.on("value", function(snapshot) {
-        console.log(snapshot.val());
-        }, function (error) {
-   console.log("Error: " + error.code);
-            })
+        this.retrieveData()
     }
   
     writeUserData (task) {
@@ -27,6 +22,14 @@ class TaskDisplay extends React.Component {
         .ref('/')
         .set(task)
       console.log('Data sent')
+    }
+
+    retrieveData () {
+        firebase.database().ref().on("value", function(snapshot) {
+            console.log(snapshot.val());
+            }, function (error) {
+       console.log("Error: " + error.code);
+                })
     }
 
   render () {
