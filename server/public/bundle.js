@@ -262,7 +262,12 @@ var TaskDisplay = /*#__PURE__*/function (_React$Component) {
     key: "componentDidUpdate",
     value: function componentDidUpdate() {
       this.writeUserData(this.props.tasks);
-      console.log('hi');
+      var ref = firebase__WEBPACK_IMPORTED_MODULE_7__["default"].database().ref();
+      ref.on("value", function (snapshot) {
+        console.log(snapshot.val());
+      }, function (error) {
+        console.log("Error: " + error.code);
+      });
     }
   }, {
     key: "writeUserData",
