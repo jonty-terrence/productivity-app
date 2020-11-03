@@ -1,6 +1,5 @@
 import React from 'react'
 import { connect } from 'react-redux'
-import firebase from 'firebase'
 
 import { removeTask } from '../actions'
 
@@ -11,27 +10,11 @@ function handleClick (task, dispatch) {
 }
 
 class TaskDisplay extends React.Component {
+  componentDidUpdate () {
+    this.writeUserData(this.props.tasks)
+    this.retrieveData()
+  }
 
-    componentDidUpdate () {
-        this.writeUserData(this.props.tasks)
-        this.retrieveData()
-    }
-  
-    writeUserData (task) {
-      firebase.database()
-        .ref('/')
-        .set(task)
-    }
-
-    retrieveData () {
-        firebase.database()
-        .ref()
-        .on("value", function(snapshot) {
-            console.log(snapshot.val());
-            }, function (error) {
-       console.log("Error: " + error.code);
-                })
-    }
 
   render () {
     return (

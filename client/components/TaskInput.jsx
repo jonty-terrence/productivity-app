@@ -1,12 +1,11 @@
 import React from 'react'
 import { connect } from 'react-redux'
 
-import { collectTask } from '../actions'
+import { addTask } from '../actions'
 
 function handleChange (dispatch) {
   let taskInput = document.getElementById('task').value
-  console.log(taskInput)
-  dispatch(collectTask(taskInput))
+  dispatch(addTask(taskInput))
   document.getElementById('task').value = ''
 }
 
