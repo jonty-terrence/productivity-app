@@ -161,7 +161,7 @@ var fetchToDos = function fetchToDos() {
         while (1) {
           switch (_context3.prev = _context3.next) {
             case 0:
-              _firebase__WEBPACK_IMPORTED_MODULE_2__["todosRef"].on('value', function (snapshot) {
+              _firebase__WEBPACK_IMPORTED_MODULE_2__["todosRef"].on('todos', function (snapshot) {
                 dispatch({
                   type: COLLECT_TASKS,
                   payload: snapshot.val()
@@ -325,6 +325,11 @@ var TaskDisplay = /*#__PURE__*/function (_React$Component) {
   }
 
   _babel_runtime_helpers_createClass__WEBPACK_IMPORTED_MODULE_1___default()(TaskDisplay, [{
+    key: "componentDidMount",
+    value: function componentDidMount() {
+      console.log(this.props);
+    }
+  }, {
     key: "componentDidUpdate",
     value: function componentDidUpdate() {
       this.writeUserData(this.props.tasks);
@@ -333,19 +338,22 @@ var TaskDisplay = /*#__PURE__*/function (_React$Component) {
   }, {
     key: "render",
     value: function render() {
-      var _this = this;
-
-      return this.props.tasks.tasks.map(function (task) {
-        return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_5___default.a.createElement(react__WEBPACK_IMPORTED_MODULE_5___default.a.Fragment, null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_5___default.a.createElement("button", {
-          onClick: function onClick() {
-            handleClick(task, _this.props.dispatch);
-
-            _this.writeUserData('yes');
-          }
-        }, "Complete"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_5___default.a.createElement("p", {
-          key: taskCount++
-        }, task));
-      });
+      return (
+        /*#__PURE__*/
+        // this.props.tasks.map(task => {
+        //   return (
+        //     <>
+        //       <button onClick={() => {
+        //         handleClick(task, this.props.dispatch)
+        //         this.writeUserData('yes')
+        //       }
+        //       }>Complete</button>
+        //       <p key={taskCount++}>{task}</p>
+        //     </>
+        //   )
+        // })
+        react__WEBPACK_IMPORTED_MODULE_5___default.a.createElement("p", null, "hi")
+      );
     }
   }]);
 
@@ -354,7 +362,7 @@ var TaskDisplay = /*#__PURE__*/function (_React$Component) {
 
 var mapStateToProps = function mapStateToProps(state) {
   return {
-    tasks: state.tasks
+    tasks: state.todos
   };
 };
 
@@ -630,14 +638,12 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _actions__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../actions */ "./client/actions/index.js");
 
 function collectTitle() {
-  var state = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {
-    tasks: []
-  };
+  var state = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {};
   var action = arguments.length > 1 ? arguments[1] : undefined;
 
   switch (action.type) {
     case _actions__WEBPACK_IMPORTED_MODULE_0__["COLLECT_TASKS"]:
-      return action.tasks;
+      return action.payload;
 
     default:
       return state;

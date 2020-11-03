@@ -12,7 +12,7 @@ export const removeTask = (task) => async dispatch => {
 }
 
 export const fetchToDos = () => async dispatch => {
-  todosRef.on('value', snapshot => {
+  todosRef.on('todos', snapshot => {
     dispatch({
       type: COLLECT_TASKS,
       payload: snapshot.val()
