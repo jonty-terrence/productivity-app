@@ -18,9 +18,11 @@ class Weather extends React.Component {
 
     render () {
       return (
-        <>
-          <h1>The Weather today is {this.state.weather[0].main}</h1>
-        </>
+        <div className="weather-sect">
+          <div className="weather-box">
+            <h1>The Weather today is {this.state.weather[0].main}</h1>
+          </div>
+        </div>
       )
     }
 }

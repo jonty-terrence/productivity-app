@@ -12,7 +12,7 @@ function handleChange (dispatch) {
 class TaskInput extends React.Component {
   render () {
     return (
-      <div>
+      <div className="input-sect">
         <input
           type="text"
           id="task"
