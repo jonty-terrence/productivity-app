@@ -1,8 +1,8 @@
 import React from 'react'
 
 const Header = () => (
-  <div>
-      This is the header
+  <div className="title-sect">
+      Productivity App
   </div>
 )
 

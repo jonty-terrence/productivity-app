@@ -33,7 +33,9 @@ class TaskDisplay extends React.Component {
       //     </>
       //   )
       // })
-      <p>hi</p>
+      <div className="task-display">
+        <p>hi</p>
+      </div>
     )
   }
 }

@@ -6,14 +6,23 @@ import TaskInput from './TaskInput'
 import TaskDisplay from './TaskDisplay'
 
 class App extends React.Component {
-render () {
+  render () {
     return (
-      <>
+      <div className="main-container">
         <Header/>
         <Weather />
+        <div className="labels">
+          labels
+        </div>
+        <div className="second-labels">
+          Second labels
+        </div>
         <TaskDisplay />
         <TaskInput />
-      </>
+        <div className="footer">
+          Footer
+        </div>
+      </div>
     )
   }
 }
