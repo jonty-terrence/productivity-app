@@ -19,7 +19,9 @@ class Weather extends React.Component {
     render () {
       return (
         <div className="weather-sect">
-          <h1>The Weather today is {this.state.weather[0].main}</h1>
+          <div className="weather-box">
+            <h1>The Weather today is {this.state.weather[0].main}</h1>
+          </div>
         </div>
       )
     }

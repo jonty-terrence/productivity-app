@@ -2,7 +2,7 @@ import React from 'react'
 
 const Header = () => (
   <div className="title-sect">
-      Productivity App
+    <h1>Productivity App</h1>
   </div>
 )
 

@@ -12,18 +12,43 @@ body {
     width: 100vw;
     height: 100vh;
     box-sizing: border-box;
+    color: #DC0100;
+}
+
+h1 {
+    font-size: 1.2em;
+    font-weight: 600;
 }
 
 .title-sect {
     grid-area: 1 / 1 / 3 / 2;
     background-color: white;
     padding: 15px;
+    display: flex;
+    justify-content: left;
+    align-items: center;
 }
 
 .weather-sect {
     grid-area: 1 / 2 / 3 / 4;
     background-color: white;
-    padding: 15px;
+    padding: 20px;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+}
+
+.weather-sect h1 {
+    padding-right: 5%;
+    margin: 0;
+}
+
+.weather-box {
+    width: fit-content;
+    height: fit-content;
+    background-color: #FADCDC;
+    padding: 2%;
+    border-radius: 25px;
 
 }
 
@@ -31,14 +56,14 @@ body {
     grid-area: 3 / 1 / 4 / 2;
     background-color: white;
     padding: 15px;
-
+    font-weight: 600;
 }
 
 .second-labels {
     grid-area: 3 / 2 / 4 / 4;
     background-color: white;
     padding: 15px;
-
+    font-weight: 600;
 }
 
 .task-display {
@@ -59,5 +84,7 @@ body {
     grid-area: 14 / 1 / 15 / 4;
     background-color: white;
     padding: 15px;
-
+    display: inline-flex;
+    justify-content: space-between;
+    font-weight: 600;
 }

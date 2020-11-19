@@ -12,15 +12,16 @@ class App extends React.Component {
         <Header/>
         <Weather />
         <div className="labels">
-          labels
+          <p>Add tasks</p>
         </div>
         <div className="second-labels">
-          Second labels
+          <p>Mark completed</p>
         </div>
         <TaskDisplay />
         <TaskInput />
         <div className="footer">
-          Footer
+          <p>App by Jonty</p>
+          <p>Auckland, New Zealand</p>
         </div>
       </div>
     )
