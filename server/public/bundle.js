@@ -90,13 +90,14 @@
 /*!*********************************!*\
   !*** ./client/actions/index.js ***!
   \*********************************/
-/*! exports provided: COLLECT_TASKS, REMOVE_TASK, addTask, removeTask, fetchToDos */
+/*! exports provided: COLLECT_TASKS, REMOVE_TASK, ADD_TASK, addTask, removeTask, fetchToDos */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "COLLECT_TASKS", function() { return COLLECT_TASKS; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "REMOVE_TASK", function() { return REMOVE_TASK; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "ADD_TASK", function() { return ADD_TASK; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "addTask", function() { return addTask; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "removeTask", function() { return removeTask; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "fetchToDos", function() { return fetchToDos; });
@@ -110,14 +111,21 @@ __webpack_require__.r(__webpack_exports__);
 
 var COLLECT_TASKS = 'COLLECT_TASKS';
 var REMOVE_TASK = 'REMOVE_TASK';
-var addTask = function addTask(task) {
+var ADD_TASK = 'ADD_TASK';
+function addTask(task) {
+  return {
+    type: 'ADD_TASK',
+    task: task
+  };
+}
+var removeTask = function removeTask(task) {
   return /*#__PURE__*/function () {
     var _ref = _babel_runtime_helpers_asyncToGenerator__WEBPACK_IMPORTED_MODULE_1___default()( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee(dispatch) {
       return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee$(_context) {
         while (1) {
           switch (_context.prev = _context.next) {
             case 0:
-              _firebase__WEBPACK_IMPORTED_MODULE_2__["todosRef"].push().set(task);
+              _firebase__WEBPACK_IMPORTED_MODULE_2__["todosRef"].child(task).remove();
 
             case 1:
             case "end":
@@ -132,14 +140,19 @@ var addTask = function addTask(task) {
     };
   }();
 };
-var removeTask = function removeTask(task) {
+var fetchToDos = function fetchToDos() {
   return /*#__PURE__*/function () {
     var _ref2 = _babel_runtime_helpers_asyncToGenerator__WEBPACK_IMPORTED_MODULE_1___default()( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee2(dispatch) {
       return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee2$(_context2) {
         while (1) {
           switch (_context2.prev = _context2.next) {
             case 0:
-              _firebase__WEBPACK_IMPORTED_MODULE_2__["todosRef"].child(task).remove();
+              _firebase__WEBPACK_IMPORTED_MODULE_2__["todosRef"].on('todos', function (snapshot) {
+                dispatch({
+                  type: COLLECT_TASKS,
+                  payload: snapshot.val()
+                });
+              });
 
             case 1:
             case "end":
@@ -151,33 +164,6 @@ var removeTask = function removeTask(task) {
 
     return function (_x2) {
       return _ref2.apply(this, arguments);
-    };
-  }();
-};
-var fetchToDos = function fetchToDos() {
-  return /*#__PURE__*/function () {
-    var _ref3 = _babel_runtime_helpers_asyncToGenerator__WEBPACK_IMPORTED_MODULE_1___default()( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee3(dispatch) {
-      return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.wrap(function _callee3$(_context3) {
-        while (1) {
-          switch (_context3.prev = _context3.next) {
-            case 0:
-              _firebase__WEBPACK_IMPORTED_MODULE_2__["todosRef"].on('todos', function (snapshot) {
-                dispatch({
-                  type: COLLECT_TASKS,
-                  payload: snapshot.val()
-                });
-              });
-
-            case 1:
-            case "end":
-              return _context3.stop();
-          }
-        }
-      }, _callee3);
-    }));
-
-    return function (_x3) {
-      return _ref3.apply(this, arguments);
     };
   }();
 };
@@ -330,7 +316,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_5___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_5__);
 /* harmony import */ var react_redux__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! react-redux */ "./node_modules/react-redux/es/index.js");
-/* harmony import */ var _actions__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ../actions */ "./client/actions/index.js");
+/* harmony import */ var _firebase__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ../firebase */ "./client/firebase.js");
+/* harmony import */ var _actions__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ../actions */ "./client/actions/index.js");
 
 
 
@@ -344,10 +331,11 @@ function _isNativeReflectConstruct() { if (typeof Reflect === "undefined" || !Re
 
 
 
+
 var taskCount = 0;
 
 function handleClick(task, dispatch) {
-  dispatch(Object(_actions__WEBPACK_IMPORTED_MODULE_7__["removeTask"])(task));
+  dispatch(Object(_actions__WEBPACK_IMPORTED_MODULE_8__["removeTask"])(task));
 }
 
 var TaskDisplay = /*#__PURE__*/function (_React$Component) {
@@ -375,33 +363,22 @@ var TaskDisplay = /*#__PURE__*/function (_React$Component) {
   }, {
     key: "render",
     value: function render() {
-      return (
-        /*#__PURE__*/
-        // this.props.tasks.map(task => {
-        //   return (
-        //     <>
-        //       <button onClick={() => {
-        //         handleClick(task, this.props.dispatch)
-        //         this.writeUserData('yes')
-        //       }
-        //       }>Complete</button>
-        //       <p key={taskCount++}>{task}</p>
-        //     </>
-        //   )
-        // })
-        react__WEBPACK_IMPORTED_MODULE_5___default.a.createElement("div", {
-          className: "task-display"
-        }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_5___default.a.createElement("div", {
-          className: "task-box"
-        }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_5___default.a.createElement("div", {
-          className: "task-text"
-        }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_5___default.a.createElement("h3", null, "This is the task name"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_5___default.a.createElement("p", null, "This is the date added")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_5___default.a.createElement("div", {
-          className: "button-sect"
-        }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_5___default.a.createElement("a", {
-          href: "#",
-          className: "complete-button"
-        }, "Complete"))))
-      );
+      _firebase__WEBPACK_IMPORTED_MODULE_7__["todosRef"].once('value').then(function (snapshot) {});
+      return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_5___default.a.createElement("div", {
+        className: "task-display"
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_5___default.a.createElement("div", {
+        className: "task-box"
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_5___default.a.createElement("div", {
+        className: "task-text"
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_5___default.a.createElement("h3", null, "This is the task name"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_5___default.a.createElement("p", null, "This is the date added")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_5___default.a.createElement("div", {
+        className: "button-sect"
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_5___default.a.createElement("a", {
+        href: "#",
+        className: "complete-button",
+        onClick: function onClick() {
+          return handleClick(task.name);
+        }
+      }, "Complete"))));
     }
   }]);
 
