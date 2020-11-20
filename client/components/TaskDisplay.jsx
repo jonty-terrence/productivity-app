@@ -1,5 +1,6 @@
 import React from 'react'
 import { connect } from 'react-redux'
+import { todosRef } from '../firebase'
 
 import { removeTask } from '../actions'
 
@@ -20,21 +21,20 @@ class TaskDisplay extends React.Component {
   }
 
   render () {
+    todosRef.once('value').then(function (snapshot) {
+      
+    })
     return (
-      // this.props.tasks.map(task => {
-      //   return (
-      //     <>
-      //       <button onClick={() => {
-      //         handleClick(task, this.props.dispatch)
-      //         this.writeUserData('yes')
-      //       }
-      //       }>Complete</button>
-      //       <p key={taskCount++}>{task}</p>
-      //     </>
-      //   )
-      // })
       <div className="task-display">
-        <p>hi</p>
+        <div className="task-box">
+          <div className="task-text">
+            <h3>This is the task name</h3>
+            <p>This is the date added</p>
+          </div>
+          <div className="button-sect">
+            <a href="#" className="complete-button" onClick={() => handleClick(task.name)}>Complete</a>
+          </div>
+        </div>
       </div>
     )
   }
