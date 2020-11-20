@@ -34,7 +34,15 @@ class TaskDisplay extends React.Component {
       //   )
       // })
       <div className="task-display">
-        <p>hi</p>
+        <div className="task-box">
+          <div className="task-text">
+            <h3>This is the task name</h3>
+            <p>This is the date added</p>
+          </div>
+          <div className="button-sect">
+            <a href="#" className="complete-button">Complete</a>
+          </div>
+        </div>
       </div>
     )
   }

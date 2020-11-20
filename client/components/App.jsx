@@ -34,10 +34,11 @@ class App extends React.Component {
         <Header/>
         <Weather />
         <div className="labels">
-          <p>Add tasks</p>
+          <p>Mark completed</p>
+
         </div>
         <div className="second-labels">
-          <p>Mark completed</p>
+          <p>Add tasks</p>
         </div>
         <TaskDisplay />
         <TaskInput />
