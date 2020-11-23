@@ -194,10 +194,10 @@ var App = /*#__PURE__*/function (_React$Component) {
   }, {
     key: "render",
     value: function render() {
-      if (this.props.tasks) {
-        renderedComponent = /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_5___default.a.createElement(_TaskDisplay__WEBPACK_IMPORTED_MODULE_10__["default"], null);
-      } else {
+      if (this.props.tasks === []) {
         renderedComponent = /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_5___default.a.createElement(_TaskPlaceholder__WEBPACK_IMPORTED_MODULE_11__["default"], null);
+      } else {
+        renderedComponent = /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_5___default.a.createElement(_TaskDisplay__WEBPACK_IMPORTED_MODULE_10__["default"], null);
       }
 
       return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_5___default.a.createElement("div", {
@@ -304,12 +304,12 @@ var TaskDisplay = /*#__PURE__*/function (_React$Component) {
   _babel_runtime_helpers_createClass__WEBPACK_IMPORTED_MODULE_1___default()(TaskDisplay, [{
     key: "render",
     value: function render() {
-      return this.props.tasks.map(function (task) {
+      return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_5___default.a.createElement("div", {
+        className: "task-display"
+      }, this.props.tasks.map(function (task) {
         return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_5___default.a.createElement("div", {
-          className: "task-display",
+          className: "task-box",
           key: taskCount++
-        }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_5___default.a.createElement("div", {
-          className: "task-box"
         }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_5___default.a.createElement("div", {
           className: "task-text"
         }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_5___default.a.createElement("h3", null, task), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_5___default.a.createElement("p", null, "Enter some tasks to get started")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_5___default.a.createElement("div", {
@@ -320,8 +320,8 @@ var TaskDisplay = /*#__PURE__*/function (_React$Component) {
           onClick: function onClick() {
             return handleClick(task.name);
           }
-        }, "Complete"))));
-      });
+        }, "Complete")));
+      }));
     }
   }]);
 

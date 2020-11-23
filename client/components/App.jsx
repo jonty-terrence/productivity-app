@@ -33,10 +33,10 @@ class App extends React.Component {
   }
 
   render () {
-    if (this.props.tasks) {
-      renderedComponent = <TaskDisplay />
-    } else {
+    if (this.props.tasks === []) {
       renderedComponent = <TaskPlaceholder />
+    } else {
+      renderedComponent = <TaskDisplay />
     }
     return (
       <div className="main-container">
