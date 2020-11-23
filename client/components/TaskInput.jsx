@@ -7,6 +7,7 @@ function handleChange (dispatch) {
   const taskInput = document.getElementById('task').value
   console.log(taskInput)
   dispatch(collectTask(taskInput))
+  document.getElementById('task').value = ''
 }
 
 class TaskInput extends React.Component {
