@@ -75,6 +75,8 @@ h1 {
 .task-display {
     grid-area: 4 / 1 / 14 / 2;
     background-color: white;
+    overflow: scroll;
+
 }
 
 .task-box {
