@@ -323,7 +323,7 @@ var TaskDisplay = /*#__PURE__*/function (_React$Component) {
           key: taskCount++
         }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_5___default.a.createElement("div", {
           className: "task-text"
-        }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_5___default.a.createElement("h3", null, task), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_5___default.a.createElement("p", null, "Enter some tasks to get started")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_5___default.a.createElement("div", {
+        }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_5___default.a.createElement("h3", null, task), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_5___default.a.createElement("p", null, "Mark the task as completed when you are done")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_5___default.a.createElement("div", {
           className: "button-sect"
         }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_5___default.a.createElement("a", {
           href: "#",
@@ -390,6 +390,7 @@ function handleChange(dispatch) {
   var taskInput = document.getElementById('task').value;
   console.log(taskInput);
   dispatch(Object(_actions__WEBPACK_IMPORTED_MODULE_7__["collectTask"])(taskInput));
+  document.getElementById('task').value = '';
 }
 
 var TaskInput = /*#__PURE__*/function (_React$Component) {

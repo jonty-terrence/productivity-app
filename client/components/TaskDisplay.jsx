@@ -18,7 +18,7 @@ class TaskDisplay extends React.Component {
             <div className="task-box" key={taskCount++}>
               <div className="task-text">
                 <h3>{task}</h3>
-                <p>Enter some tasks to get started</p>
+                <p>Mark the task as completed when you are done</p>
               </div>
               <div className="button-sect">
                 <a href="#" className="complete-button" onClick={() => handleClick(task, this.props.dispatch)}>Complete</a>
