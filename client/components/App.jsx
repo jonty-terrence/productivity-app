@@ -1,9 +1,13 @@
 import React from 'react'
+import { connect } from 'react-redux'
 
 import Header from './Header'
 import Weather from './Weather'
 import TaskInput from './TaskInput'
 import TaskDisplay from './TaskDisplay'
+import TaskPlaceholder from './TaskPlaceholder'
+
+let renderedComponent
 
 class App extends React.Component {
   constructor (props) {
@@ -29,6 +33,11 @@ class App extends React.Component {
   }
 
   render () {
+    if (this.props.tasks) {
+      renderedComponent = <TaskDisplay />
+    } else {
+      renderedComponent = <TaskPlaceholder />
+    }
     return (
       <div className="main-container">
         <Header/>
@@ -40,7 +49,7 @@ class App extends React.Component {
         <div className="second-labels">
           <p>Add tasks</p>
         </div>
-        <TaskDisplay />
+        {renderedComponent}
         <TaskInput />
         <div className="footer">
           <p>App by Jonty</p>
@@ -52,4 +61,10 @@ class App extends React.Component {
   }
 }
 
-export default App
+const mapStateToProps = state => {
+  return {
+    tasks: state.tasks
+  }
+}
+
+export default connect(mapStateToProps)(App)

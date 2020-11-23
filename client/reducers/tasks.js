@@ -1,9 +1,12 @@
-import { COLLECT_TASKS } from '../actions'
+import { COLLECT_TASK } from '../actions'
 
-export default function collectTitle (state = { }, action) {
+export default function collectTitle (state = [], action) {
   switch (action.type) {
-    case COLLECT_TASKS:
-      return action.payload
+    case COLLECT_TASK:
+      return [
+        ...state,
+        action.task
+      ]
     default:
       return state
   }
